@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div width="100%"> 
+        <canvas id="myCanvas" width="1066px" height="40"></canvas>
+     <!--<h1>Frete grátis acima de R$50,00</h1>-->
+   </div>
+    <script>
+        const img1 = 'https://res.cloudinary.com/dddvuoz7c/image/upload/v1704393391/2_ikwc5m.png';
+        const img2 = 'https://res.cloudinary.com/dddvuoz7c/image/upload/v1706734607/Texto_do_seu_par%C3%A1grafo_lqab7k.png';
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        const frames = [img1, img2];
+    
+        let currentFrame = 0;
+    
+        function drawFrame() {
+          const img = new Image();
+          img.src = frames[currentFrame];
+          img.onload = function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    
+            // Increment the frame index
+            currentFrame = (currentFrame + 1) % frames.length;
+    
+            // Schedule the next frame
+            setTimeout(drawFrame, 1300); // 100 milliseconds delay between frames
+          };
+        }
+    
+        // Start the animation
+        drawFrame();
+      </script>
+    
+</body>
+</html>
